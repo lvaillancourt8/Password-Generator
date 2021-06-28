@@ -9,11 +9,15 @@ var upperCaseString = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
 var numberString = "1234567890";
 var specialString = "~!@#$%^&*()_+";
 var charString = "";
+var charLength;
 
 // Write a function to generate the password
 function generatePassword() {
+  console.log(charString);
   setCharLength();
   chooseCharSet();
+  getRandomString(charLength);
+  return;
   }
 
 // Allow User to set the password character length and character types
@@ -35,6 +39,7 @@ function setCharLength() {
     numberChar = confirm("Include numbers in the password?");
     specialChar = confirm("Include special characters in the password?");
   }
+  console.log(charLength);
 }
 
 //Create the Character String to choose password characters from
@@ -71,12 +76,29 @@ function numberEval() {
 function specialEval() {
       if (specialChar === true) {
         charString = charString.concat(specialString);
+      } else {
+        errorEval();
       }
       console.log(charString); 
-      return(charString);
   }
 
+  function errorEval(){
+    if (!lowerCaseChar || !upperCaseChar || !numberChar || !specialChar) {
+      alert("You must include at least one category of characters!")
+    } else {
+      console.log(charString);
+    }
+  }
 
+// Generate a random string from the Character Set
+function getRandomString() {
+  var randomString = "";
+  // var randomStringLength = charLength.length
+  for ( var i = 0; i < length; i++ ) {
+      randomString +- charString.charAt(Math.floor(Math.random() * charLength));
+  }
+  return(randomString);
+}
 
 
 
@@ -91,4 +113,3 @@ function writePassword() {
 
 // Add event listener to generate button
 generateBtn.addEventListener("click", writePassword);
-
