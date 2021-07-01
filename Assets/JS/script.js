@@ -9,97 +9,90 @@ var upperCaseString = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
 var numberString = "1234567890";
 var specialString = "~!@#$%^&*()_+";
 var charString = "";
-var charLength;
+var charLength; 
 
 // Write a function to generate the password
 function generatePassword() {
-  console.log(charString);
   setCharLength();
   chooseCharSet();
-  getRandomString(charLength);
-  return;
+  return getRandomString();
   }
 
 // Allow User to set the password character length and character types
 function setCharLength() {
-  var charLength = prompt("How many characters in your password?");
+  charLength = prompt("How many characters in your password?");
   charLength = Number(charLength);
     if (charLength === 0 || isNaN(charLength)) {
-    alert("Please enter a number.");
+    alert("Please enter a number!");
+    setCharLength();
   } 
   else if (charLength < 8){
     alert("Password must be 8 characters or longer.");
+    setCharLength();
   }
   else if (charLength > 128) {
     alert("Password must be 128 characters or less.");
+    setCharLength();
   }
   else {
-    lowerCaseChar = confirm("Include lowercase letters in the password?");
-    upperCaseChar = confirm("Include uppercase letters in the password?");
-    numberChar = confirm("Include numbers in the password?");
-    specialChar = confirm("Include special characters in the password?");
+    lowerCaseChar = confirm("Include lowercase letters in the password?\n Choose OK for Yes, Cancel for No.");
+    upperCaseChar = confirm("Include uppercase letters in the password?\n Choose OK for Yes, Cancel for No.");
+    numberChar = confirm("Include numbers in the password?\n Choose OK for Yes, Cancel for No.");
+    specialChar = confirm("Include special characters in the password?\n Choose OK for Yes, Cancel for No.");
   }
-  console.log(charLength);
 }
 
 //Create the Character String to choose password characters from
 function chooseCharSet() {
   if (lowerCaseChar === true) {
     charString = charString.concat(lowerCaseString);
-    console.log(charString);
     upperEval();
-    } else {
+  } else {
       upperEval();
     }
-  }
-
+} 
+      
 function upperEval() {
-    if (upperCaseChar === true) {
-      charString = charString.concat(upperCaseString);
-      console.log(charString);
-      numberEval();
-    } else {
+  if (upperCaseChar === true) {
+    charString = charString.concat(upperCaseString);
+    numberEval();
+  } else {
       numberEval();
     }
-  }
-
+}       
+        
 function numberEval() {
-    if (numberChar === true) {
-      charString = charString.concat(numberString);
-      console.log(charString);
+  if (numberChar === true) {
+    charString = charString.concat(numberString);
+    specialEval();
+  } else {
       specialEval();
-    } else {
-     specialEval();
     }
-  }
+}  
 
 function specialEval() {
-      if (specialChar === true) {
-        charString = charString.concat(specialString);
-      } else {
-        errorEval();
-      }
-      console.log(charString); 
-  }
-
-  function errorEval(){
-    if (!lowerCaseChar || !upperCaseChar || !numberChar || !specialChar) {
-      alert("You must include at least one category of characters!")
-    } else {
-      console.log(charString);
+  if (specialChar === true) {
+    charString = charString.concat(specialString);
+    return(charString);
+  } else {
+      errorEval();
     }
+}
+  
+function errorEval(){
+  if (!lowerCaseChar && !upperCaseChar && !numberChar && !specialChar) {
+    alert("You must include at least one category of characters!")
   }
+}          
 
 // Generate a random string from the Character Set
 function getRandomString() {
   var randomString = "";
-  // var randomStringLength = charLength.length
-  for ( var i = 0; i < length; i++ ) {
-      randomString +- charString.charAt(Math.floor(Math.random() * charLength));
+  for ( var i = 0; i < charLength; i++ ) {
+    randomString += charString.charAt(Math.floor(Math.random() * charString.length));
   }
   return(randomString);
 }
-
 
 
 // Write password to the #password input
