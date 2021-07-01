@@ -1,6 +1,9 @@
 # Password-Generator
 Coding Bootcamp Homework Week #3 - use JavaScript to create a password generator application
 
+## Link to Live Application
+https://lvaillancourt8.github.io/Password-Generator/
+
 ## User Story
 
 ```
